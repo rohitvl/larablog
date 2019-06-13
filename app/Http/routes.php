@@ -24,4 +24,11 @@ Route::get('/admin', function(){
     return view('admin.index');
 });
 
-Route::resource('admin/users', 'AdminUsersController');
+
+
+//every request to the AdminUsersController will pass through the middleware admin
+Route::group(['middleware'=>'admin'], function(){
+
+    Route::resource('admin/users', 'AdminUsersController');
+
+});

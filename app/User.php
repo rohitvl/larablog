@@ -12,7 +12,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'role_id', 'is_active'
+        'name', 'email', 'password', 'role_id', 'is_active', 'photo_id'
     ];
 
     /**
@@ -28,4 +28,28 @@ class User extends Authenticatable
         //One role can many users, so we have assigned the inverse one to many relation in inverse way.
         return $this->belongsTo('App\Role');
     }
+
+    public function photo(){
+        return $this->belongsTo('App\Photo');
+    }
+
+    //setter for hashing the passwords
+    public function setPasswordAttribute($value){
+        $this->attributes['password'] = bcrypt($value);
+    }
+
+
+    //custom method to check whether the user is admin or not
+    public function isAdmin(){
+
+        if($this->role->name == 'administrator' && $this->is_active==1){
+            return true;
+        }
+
+        return false;
+
+    }
+
+
+
 }
