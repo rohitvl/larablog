@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-      <title>Edit Posts Page</title>
+      <title>See Posts Page</title>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -50,7 +50,7 @@
 
 
             <div class="container mt-5 mb-5">
-              <h2 class="text-center">Edit Posts</h2><br /><br />
+              <h2 class="text-center">See Posts</h2><br /><br />
               <div class="row">
               <div class="col-md-3">
                 @if($post->photo)
@@ -61,70 +61,58 @@
               </div>
 
               <div class="col-md-9">
-                <form action="/admin/posts/{{$post->id}}" method="POST" enctype="multipart/form-data">
-                      {{csrf_field()}}
-                      <input type="hidden" name="_method" value="PUT">
 
-                      <div class="form-group">
-                        <label for="title">Title:</label>
-                        <input type="name" class="form-control" id="title" placeholder="Enter title" name="title" value="{{$post->title}}">
-                      </div>
+                    <div class="border">
+                      <h2 class="px-3 text-center text-info">Title</h2>
+                      <p class="px-3 text-center">{{$post->title}}</p>
+                    </div>
 
-                      <div class="form-group">
-                        <label for="category">Select Category:</label>
-                        <select class="form-control" id="category" name="category_id">
+                    <div class="border">
+                      <h2 class="px-3 text-center text-info">Content</h2>
+                      <p class="px-3 text-center">{{$post->body}}</p>
+                    </div>
+                    <p class="text-success"><i>posted {{$post->created_at->diffForHumans()}} by {{$post->user->name}}</i></p>
 
-                          @foreach($categories as $category)
-                            @if($post->category->name == $category->name)
-                              <option value="{{$category->id}}" selected="selected">{{$category->name}}</option>
-                            @else
-                              <option value="{{$category->id}}">{{$category->name}}</option>
-                            @endif
+                </div>
+              </div><br /><br />
+
+
+                <div>
+                  <form action="{{route('admin.comments.store', $post->id)}}" method="POST" enctype="multipart/form-data">
+                        {{csrf_field()}}
+                        <div class="form-group">
+                          <label for="comment">Add Comment:</label>
+                          <input type="text" class="form-control" id="title" placeholder="Enter comment" name="comment">
+                        </div>
+
+                        <input type="hidden" value="{{$post->id}}" name="post_id">
+
+                        <input type="hidden" value="{{Auth::user()->id}}" name="user_id">
+
+
+                        <button type="submit" class="btn btn-primary">Comment</button>
+
+                  </form>
+                </div><br /><br />
+
+                <div>
+
+                  <h3>Comments on this Posts</h3><br />
+                      @if(count($comments)>0)
+                          @foreach($comments as $comment)
+                          <div class="border mt-3">
+                            <h4 class="px-3 text-success">{{$comment->comment}}</h4>
+                            <p class="px-3">commented {{$comment->created_at->diffForHumans()}} by <b>{{$comment->user->name}}</b> </p>
+                          </div><br />
                           @endforeach
 
-                        </select>
-                      </div>
-
-                      <div class="form-group">
-                          <input type="file" class="form-control-file border" name="photo_id" id="photo_id">
-                      </div>
-
-                      <div class="form-group">
-                          <label for="body">Description:</label>
-                          <textarea class="form-control" id="body" rows="10" name="body">{{$post->body}}</textarea>
-                      </div>
-
-                      <div class="row">
-                      <div class="col-sm-6 text-center">
-                        <button type="submit" class="btn btn-primary" style="width:90%;">Update Post</button>
-
-                        </form>
-                      </div>
+                      @else
+                          <p class="px-3 text-danger">No comments on this post</b> </p>
+                      @endif
 
 
-
-                      <div class="col-sm-6 text-center">
-                          <form action="/admin/posts/{{$post->id}}" method="post">
-                              {{csrf_field()}}
-                              <input type="hidden" name="_method" value="DELETE">
-                              <button type="submit" class="btn btn-danger" style="width:90%;">Delete Post</button>
-                          </form>
-                      </div>
-
-                    </div>
-                </div>
                 </div>
 
-
-                <ul class="text-danger mt-5 bg-light">
-                  @if(count($errors)>0)
-                    @foreach($errors->all() as $error)
-                      <li>
-                        {{$error}}
-                      </li>
-                    @endforeach
-                  @endif
-                </ul>
 
             </div>
 

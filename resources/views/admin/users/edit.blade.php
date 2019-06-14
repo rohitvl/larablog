@@ -12,12 +12,14 @@
   <body>
       <div class="container-fluid">
         <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-            <a class="navbar-brand" href="#">Blogvel</a>
+            <a class="navbar-brand" href="/">Blogvel</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
             <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="collapsibleNavbar">
               <ul class="navbar-nav">
+
+
                 <li class="nav-item dropdown ml-5">
                   <a class="nav-link dropdown-toggle text-white" href="#" id="navbardrop" data-toggle="dropdown">
                     Users
@@ -27,6 +29,7 @@
                     <a class="dropdown-item" href="{{route('admin.users.create')}}">Create Users</a>
                   </div>
                 </li>
+
 
                 <li class="nav-item dropdown ml-5">
                   <a class="nav-link dropdown-toggle text-white" href="#" id="navbardrop" data-toggle="dropdown">
@@ -40,13 +43,14 @@
 
               </ul>
             </div>
-          </nav>
+          </nav><br />
+          <div class="m-0 bg-dark text-center text-white">you are logged in as {{Auth::user()->name}}</div>
         </div>
 
 
 
       <div class="container mt-5 mb-5">
-        <h2 class="text-center">Edit User</h2>
+        <h2 class="text-center">Edit User</h2><br /><br />
         <div class="row">
         <div class="col-md-3">
           @if($user->photo)

@@ -6,8 +6,10 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'AddForeignkeyToComment' => $baseDir . '/database/migrations/2019_06_14_115549_add_foreignkey_to_comment.php',
     'AddPhotosToUsers' => $baseDir . '/database/migrations/2019_06_13_061419_add_photos_to_users.php',
     'CreateCategoriesTable' => $baseDir . '/database/migrations/2019_06_14_054833_create_categories_table.php',
+    'CreateCommentsTable' => $baseDir . '/database/migrations/2019_06_14_114702_create_comments_table.php',
     'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
     'CreatePhotosTable' => $baseDir . '/database/migrations/2019_06_13_065018_create_photos_table.php',
     'CreatePostsTable' => $baseDir . '/database/migrations/2019_06_13_194522_create_posts_table.php',

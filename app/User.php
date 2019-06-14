@@ -51,10 +51,23 @@ class User extends Authenticatable
     }
 
 
+    public function isAdminOnly(){
+
+        if($this->role->name == 'administrator'){
+            return true;
+        }
+
+        return false;
+
+    }
+
+
     public function posts(){
         return $this->hasMany('App\Post');
     }
 
-
+    public function comments(){
+        return $this->hasMany('App\Comment');
+    }
 
 }

@@ -16,6 +16,8 @@ use App\Photo;
 
 use App\Category;
 
+use App\Comment;
+
 class AdminPostsController extends Controller
 {
     /**
@@ -76,7 +78,9 @@ class AdminPostsController extends Controller
      */
     public function show($id)
     {
-        //
+        $post = Post::findOrFail($id);
+        $comments = Comment::where('post_id', '=', $id)->get();
+        return view('admin.posts.show', compact('post', 'comments'));
     }
 
     /**

@@ -13,12 +13,15 @@
 
           <div class="container-fluid">
             <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-                <a class="navbar-brand" href="#">Blogvel</a>
+                <a class="navbar-brand" href="/">Blogvel</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
                 <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="collapsibleNavbar">
                   <ul class="navbar-nav">
+
+
+                    @if(Auth::user()->isAdminOnly())
                     <li class="nav-item dropdown ml-5">
                       <a class="nav-link dropdown-toggle text-white" href="#" id="navbardrop" data-toggle="dropdown">
                         Users
@@ -28,6 +31,7 @@
                         <a class="dropdown-item" href="{{route('admin.users.create')}}">Create Users</a>
                       </div>
                     </li>
+                    @endif
 
                     <li class="nav-item dropdown ml-5">
                       <a class="nav-link dropdown-toggle text-white" href="#" id="navbardrop" data-toggle="dropdown">
@@ -41,19 +45,22 @@
 
                   </ul>
                 </div>
-              </nav>
+              </nav><br />
+              <div class="m-0 bg-dark text-center text-white">you are logged in as {{Auth::user()->name}}</div>
             </div>
 
 
-            <div class="container">
-                <h2 class="text-center">Create Post</h2>
+
+            <div class="container mt-5 mb-5">
+
+                <h2 class="text-center">Create Post</h2><br /><br />
 
                 <form action="/admin/posts" method="POST" enctype="multipart/form-data">
                       {{csrf_field()}}
 
                       <div class="form-group">
                         <label for="title">Title:</label>
-                        <input type="name" class="form-control" id="title" placeholder="Enter title" name="title">
+                        <input type="text" class="form-control" id="title" placeholder="Enter title" name="title">
                       </div>
 
                       <div class="form-group">
