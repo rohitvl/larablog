@@ -11,7 +11,7 @@
   </head>
   <body>
     <div class="container">
-        <h1 class="text-center">Not Found</h1>
+        <h1 class="text-center text-info">Not Found</h1>
     </div>
   </body>
 </html>

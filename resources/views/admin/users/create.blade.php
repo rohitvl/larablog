@@ -28,6 +28,16 @@
                   </div>
                 </li>
 
+                <li class="nav-item dropdown ml-5">
+                  <a class="nav-link dropdown-toggle text-white" href="#" id="navbardrop" data-toggle="dropdown">
+                    Posts
+                  </a>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" href="{{route('admin.posts.index')}}">All Posts</a>
+                    <a class="dropdown-item" href="{{route('admin.posts.create')}}">Create Posts</a>
+                  </div>
+                </li>
+
               </ul>
             </div>
           </nav>
@@ -78,12 +88,12 @@
                     <input type="file" class="form-control-file border" name="photo_id" id="pic">
                 </div>
 
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary">Create User</button>
 
                 </form>
 
 
-                
+
 
 
 

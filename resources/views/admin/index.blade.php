@@ -11,10 +11,43 @@
   </head>
   <body>
 
-    
-      <div class="container">
-          <h2 class="text-center">Admin</h2>
-      </div>
+          <div class="container-fluid">
+            <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+                <a class="navbar-brand" href="#">Blogvel</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                  <ul class="navbar-nav">
+                    <li class="nav-item dropdown ml-5">
+                      <a class="nav-link dropdown-toggle text-white" href="#" id="navbardrop" data-toggle="dropdown">
+                        Users
+                      </a>
+                      <div class="dropdown-menu">
+                        <a class="dropdown-item" href="{{route('admin.users.index')}}">All Users</a>
+                        <a class="dropdown-item" href="{{route('admin.users.create')}}">Create Users</a>
+                      </div>
+                    </li>
+
+                    <li class="nav-item dropdown ml-5">
+                      <a class="nav-link dropdown-toggle text-white" href="#" id="navbardrop" data-toggle="dropdown">
+                        Posts
+                      </a>
+                      <div class="dropdown-menu">
+                        <a class="dropdown-item" href="{{route('admin.posts.index')}}">All Posts</a>
+                        <a class="dropdown-item" href="{{route('admin.posts.create')}}">Create Posts</a>
+                      </div>
+                    </li>
+
+                  </ul>
+                </div>
+              </nav>
+            </div>
+
+
+            <div class="container">
+                <h2 class="text-center">Admin</h2>
+            </div>
 
   </body>
 </html>
