@@ -74,7 +74,7 @@ class AdminCommentsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
     }
 
     /**
@@ -85,6 +85,11 @@ class AdminCommentsController extends Controller
      */
     public function destroy($id)
     {
-        //
+
+        Comment::whereId($id)->delete();
+        //set session to flash deleted comment msg
+        session()->flash('deletedcomm', 'Comment deleted successfully!');
+
+        return redirect()->back();
     }
 }

@@ -69,7 +69,7 @@
           <table class="table table-hover table-responsive-md">
                 <thead>
                   <tr>
-                    <th>Id</th>
+                    <th>Sr No.</th>
                     <th>Photo</th>
                     <th>Name</th>
                     <th>Email</th>
@@ -83,9 +83,11 @@
 
                     @if($users)
 
+                    <?php $count=1; ?>
+
                       @foreach($users as $user)
                           <tr>
-                            <td>{{$user->id}}</td>
+                            <td>{{$count++}}</td>
 
                             <td>
                               @if($user->photo)

@@ -48,6 +48,13 @@
               <div class="m-0 bg-dark text-center text-white">you are logged in as {{Auth::user()->name}}</div>
             </div>
 
+            @if (session()->has('deletedcomm'))
+              <div class="container">
+              <br />
+              <h2 class="bg-danger text-white">{{session('deletedcomm')}}</h2>
+              </div>
+
+            @endif
 
             <div class="container mt-5 mb-5">
               <h2 class="text-center">See Posts</h2><br /><br />
@@ -82,7 +89,7 @@
                         {{csrf_field()}}
                         <div class="form-group">
                           <label for="comment">Add Comment:</label>
-                          <input type="text" class="form-control" id="title" placeholder="Enter comment" name="comment">
+                          <input type="text" class="form-control" id="comment" placeholder="Enter comment" name="comment" autocomplete="off">
                         </div>
 
                         <input type="hidden" value="{{$post->id}}" name="post_id">
@@ -103,6 +110,15 @@
                           <div class="border mt-3">
                             <h4 class="px-3 text-success">{{$comment->comment}}</h4>
                             <p class="px-3">commented {{$comment->created_at->diffForHumans()}} by <b>{{$comment->user->name}}</b> </p>
+
+                            @if($comment->user_id == Auth::user()->id)
+                            <form action="/admin/comments/{{$comment->id}}" method="post" class="px-3 mb-2">
+                              {{csrf_field()}}
+                              <input type="hidden" name="_method" value="DELETE">
+                              <button type="submit" class="btn btn-primary btn-sm">Delete</button>
+                            </form>
+                            @endif
+
                           </div><br />
                           @endforeach
 

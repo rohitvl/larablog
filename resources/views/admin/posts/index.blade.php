@@ -17,6 +17,17 @@
         .namelink:hover {
           text-decoration: none;
         }
+        .pagination > li {
+          padding: 5px;
+          font-size: 2vw;
+          border: 2px solid lavender;
+          display: inline;
+        }
+
+        .divpagination {
+          text-align: center;
+        }
+
       </style>
   </head>
   <body>
@@ -85,9 +96,10 @@
                       <tbody>
 
                           @if($posts)
+                            <?php $count=1; ?>
 
                             @foreach($posts as $post)
-                                  <td>{{$post->id}}</td>
+                                  <td>{{$count++}}</td>
                                   <td>
                                     <img src="{{$post->photo_id == 0 ?  '/images/no.png' : $post->photo->path}}" height="50" width="65">
                                   </td>
@@ -104,6 +116,10 @@
 
                       </tbody>
                 </table>
+
+                <div class="divpagination">
+                  {{ $posts->links() }}
+                </div>
             </div>
 
   </body>

@@ -75,10 +75,6 @@
                   <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" value="{{$user->email}}">
                 </div>
 
-                <div class="form-group">
-                  <label for="pass">Password:</label>
-                  <input type="password" class="form-control" id="pass" placeholder="Enter password" name="password"  value="******">
-                </div>
 
                 <div class="form-group">
                   <label for="role">Select Role:</label>

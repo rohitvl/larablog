@@ -28,7 +28,6 @@ class UsersRequest extends Request
             'email' => 'required',
             'role_id' => 'required',
             'is_active' => 'required',
-            'password' => 'required|min:6'
         ];
     }
 }
